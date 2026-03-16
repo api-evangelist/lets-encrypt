@@ -1,0 +1,47 @@
+aid: lets-encrypt
+name: Let's Encrypt
+description: >-
+  Let's Encrypt is a free, automated, and open certificate authority run by the
+  Internet Security Research Group affiliated with the Linux Foundation. It
+  provides TLS certificates to secure the web, having issued billions of
+  certificates to enable HTTPS for websites worldwide.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - TLS
+  - Certificates
+  - Security
+  - Linux Foundation
+created: '2026-03-16'
+modified: '2026-03-16'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/lets-encrypt/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: lets-encrypt:lets-encrypt-api
+    name: Let's Encrypt API
+    description: >-
+      API for Let's Encrypt certificate authority, providing automated issuance
+      and management of free TLS/SSL certificates using the ACME protocol to
+      secure websites with HTTPS.
+    humanURL: https://letsencrypt.org/docs/
+    tags:
+      - TLS
+      - Certificates
+    properties:
+      - type: Documentation
+        url: https://letsencrypt.org/docs/
+common:
+  - type: Documentation
+    name: Let's Encrypt Documentation
+    description: Official documentation for Let's Encrypt.
+    url: https://letsencrypt.org/docs/
+  - type: GitHubOrg
+    name: Let's Encrypt GitHub
+    description: Source code and repositories for Let's Encrypt.
+    url: https://github.com/letsencrypt
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
