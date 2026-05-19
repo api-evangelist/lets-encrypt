@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Let's Encrypt ACME API — Authorization
+  description: 'Let''s Encrypt ACME API — Authorization. 1 operations. Lead operation: Get authorization status. Self-contained
+    Naftiko capability covering one Lets Encrypt business surface.'
+  tags:
+  - Lets Encrypt
+  - Authorization
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LETS_ENCRYPT_API_KEY: LETS_ENCRYPT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: acme-authorization
+    baseUri: https://acme-v02.api.letsencrypt.org
+    description: Let's Encrypt ACME API — Authorization business capability. Self-contained, no shared references.
+    resources:
+    - name: acme-authz-authzId
+      path: /acme/authz/{authzId}
+      operations:
+      - name: getauthorization
+        method: POST
+        description: Get authorization status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: authzId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: acme-authorization-rest
+    port: 8080
+    description: REST adapter for Let's Encrypt ACME API — Authorization. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/acme/authz/{authzid}
+      name: acme-authz-authzid
+      description: REST surface for acme-authz-authzId.
+      operations:
+      - method: POST
+        name: getauthorization
+        description: Get authorization status
+        call: acme-authorization.getauthorization
+        with:
+          authzId: rest.authzId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: acme-authorization-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Let's Encrypt ACME API — Authorization. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-authorization-status
+      description: Get authorization status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: acme-authorization.getauthorization
+      with:
+        authzId: tools.authzId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Let's Encrypt ACME API — Challenge
+  description: 'Let''s Encrypt ACME API — Challenge. 1 operations. Lead operation: Respond to a challenge. Self-contained
+    Naftiko capability covering one Lets Encrypt business surface.'
+  tags:
+  - Lets Encrypt
+  - Challenge
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    LETS_ENCRYPT_API_KEY: LETS_ENCRYPT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: acme-challenge
+    baseUri: https://acme-v02.api.letsencrypt.org
+    description: Let's Encrypt ACME API — Challenge business capability. Self-contained, no shared references.
+    resources:
+    - name: acme-chall-challengeId
+      path: /acme/chall/{challengeId}
+      operations:
+      - name: respondchallenge
+        method: POST
+        description: Respond to a challenge
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: challengeId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: rest
+    namespace: acme-challenge-rest
+    port: 8080
+    description: REST adapter for Let's Encrypt ACME API — Challenge. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/acme/chall/{challengeid}
+      name: acme-chall-challengeid
+      description: REST surface for acme-chall-challengeId.
+      operations:
+      - method: POST
+        name: respondchallenge
+        description: Respond to a challenge
+        call: acme-challenge.respondchallenge
+        with:
+          challengeId: rest.challengeId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: acme-challenge-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Let's Encrypt ACME API — Challenge. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: respond-challenge
+      description: Respond to a challenge
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: acme-challenge.respondchallenge
+      with:
+        challengeId: tools.challengeId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
