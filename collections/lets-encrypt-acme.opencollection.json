@@ -1,0 +1,280 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Let's Encrypt ACME API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Directory",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ACME directory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://acme-v02.api.letsencrypt.org/directory"
+          },
+          "docs": "Returns URLs for all ACME resources and server metadata."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Nonce",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a new nonce",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/new-nonce"
+          },
+          "docs": "Returns a fresh nonce in the Replay-Nonce header for use in JWS requests."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or look up an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/new-acct",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ACME account or returns the URL of an existing account for the given key."
+        },
+        {
+          "info": {
+            "name": "Update or deactivate account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/acct/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update or deactivate account"
+        },
+        {
+          "info": {
+            "name": "Rotate account key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/key-change",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rotate account key"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Order",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a new certificate order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/new-order",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new certificate order"
+        },
+        {
+          "info": {
+            "name": "Get order status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/order/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get order status"
+        },
+        {
+          "info": {
+            "name": "Finalize an order with a CSR",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/finalize/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Finalize an order with a CSR"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get authorization status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/authz/:authzId",
+            "params": [
+              {
+                "name": "authzId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get authorization status"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Challenge",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Respond to a challenge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/chall/:challengeId",
+            "params": [
+              {
+                "name": "challengeId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Respond to a challenge"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Certificate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download issued certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/cert/:certId",
+            "params": [
+              {
+                "name": "certId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Download issued certificate"
+        },
+        {
+          "info": {
+            "name": "Revoke a certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/revoke-cert",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Revoke a certificate"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
