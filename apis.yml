@@ -38,6 +38,10 @@ apis:
       - type: OpenAPI
         url: openapi/lets-encrypt-acme-openapi.yml
 common:
+  - type: VulnerabilityDisclosure
+    url: security/lets-encrypt-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/lets-encrypt-domain-security.yml
   - type: Documentation
     name: Let's Encrypt Documentation
     description: Official documentation for Let's Encrypt.
@@ -50,6 +54,8 @@ common:
     name: ACME RFC 8555
     description: IETF specification for the ACME protocol.
     url: https://datatracker.ietf.org/doc/html/rfc8555
+  - url: https://letsencrypt.org/feed.xml
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
