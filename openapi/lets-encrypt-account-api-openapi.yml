@@ -1,0 +1,86 @@
+openapi: 3.0.3
+info:
+  title: Let's Encrypt ACME Account API
+  description: The ACME (Automatic Certificate Management Environment) protocol API used by Let's Encrypt to automate the issuance, renewal, and revocation of TLS certificates. Implements RFC 8555.
+  version: '1.0'
+  contact:
+    name: Let's Encrypt
+    url: https://letsencrypt.org/docs/
+  license:
+    name: Mozilla Public License 2.0
+    url: https://www.mozilla.org/en-US/MPL/2.0/
+servers:
+- url: https://acme-v02.api.letsencrypt.org
+  description: Production ACME endpoint
+- url: https://acme-staging-v02.api.letsencrypt.org
+  description: Staging ACME endpoint
+tags:
+- name: Account
+  description: ACME account creation and management
+paths:
+  /acme/new-acct:
+    post:
+      tags:
+      - Account
+      summary: Create or look up an account
+      description: Creates a new ACME account or returns the URL of an existing account for the given key.
+      operationId: newAccount
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '201':
+          description: Account created
+        '200':
+          description: Existing account returned
+  /acme/acct/{accountId}:
+    post:
+      tags:
+      - Account
+      summary: Update or deactivate account
+      operationId: updateAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: Account updated
+  /acme/key-change:
+    post:
+      tags:
+      - Account
+      summary: Rotate account key
+      operationId: keyChange
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: Account key rotated
+components:
+  schemas:
+    JWS:
+      type: object
+      description: Flattened JSON Web Signature object per RFC 7515
+      properties:
+        protected:
+          type: string
+        payload:
+          type: string
+        signature:
+          type: string

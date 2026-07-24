@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: Let's Encrypt ACME Account Certificate API
+  description: The ACME (Automatic Certificate Management Environment) protocol API used by Let's Encrypt to automate the issuance, renewal, and revocation of TLS certificates. Implements RFC 8555.
+  version: '1.0'
+  contact:
+    name: Let's Encrypt
+    url: https://letsencrypt.org/docs/
+  license:
+    name: Mozilla Public License 2.0
+    url: https://www.mozilla.org/en-US/MPL/2.0/
+servers:
+- url: https://acme-v02.api.letsencrypt.org
+  description: Production ACME endpoint
+- url: https://acme-staging-v02.api.letsencrypt.org
+  description: Staging ACME endpoint
+tags:
+- name: Certificate
+  description: Issued certificate retrieval and revocation
+paths:
+  /acme/cert/{certId}:
+    post:
+      tags:
+      - Certificate
+      summary: Download issued certificate
+      operationId: getCertificate
+      parameters:
+      - name: certId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: PEM-encoded certificate chain
+          content:
+            application/pem-certificate-chain:
+              schema:
+                type: string
+  /acme/revoke-cert:
+    post:
+      tags:
+      - Certificate
+      summary: Revoke a certificate
+      operationId: revokeCertificate
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: Certificate revoked
+components:
+  schemas:
+    JWS:
+      type: object
+      description: Flattened JSON Web Signature object per RFC 7515
+      properties:
+        protected:
+          type: string
+        payload:
+          type: string
+        signature:
+          type: string

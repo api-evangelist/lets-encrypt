@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  title: Let's Encrypt ACME Account Challenge API
+  description: The ACME (Automatic Certificate Management Environment) protocol API used by Let's Encrypt to automate the issuance, renewal, and revocation of TLS certificates. Implements RFC 8555.
+  version: '1.0'
+  contact:
+    name: Let's Encrypt
+    url: https://letsencrypt.org/docs/
+  license:
+    name: Mozilla Public License 2.0
+    url: https://www.mozilla.org/en-US/MPL/2.0/
+servers:
+- url: https://acme-v02.api.letsencrypt.org
+  description: Production ACME endpoint
+- url: https://acme-staging-v02.api.letsencrypt.org
+  description: Staging ACME endpoint
+tags:
+- name: Challenge
+  description: Validation challenges (HTTP-01, DNS-01, TLS-ALPN-01)
+paths:
+  /acme/chall/{challengeId}:
+    post:
+      tags:
+      - Challenge
+      summary: Respond to a challenge
+      operationId: respondChallenge
+      parameters:
+      - name: challengeId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: Challenge response accepted
+components:
+  schemas:
+    JWS:
+      type: object
+      description: Flattened JSON Web Signature object per RFC 7515
+      properties:
+        protected:
+          type: string
+        payload:
+          type: string
+        signature:
+          type: string

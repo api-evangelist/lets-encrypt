@@ -1,0 +1,68 @@
+openapi: 3.0.3
+info:
+  title: Let's Encrypt ACME Account Directory API
+  description: The ACME (Automatic Certificate Management Environment) protocol API used by Let's Encrypt to automate the issuance, renewal, and revocation of TLS certificates. Implements RFC 8555.
+  version: '1.0'
+  contact:
+    name: Let's Encrypt
+    url: https://letsencrypt.org/docs/
+  license:
+    name: Mozilla Public License 2.0
+    url: https://www.mozilla.org/en-US/MPL/2.0/
+servers:
+- url: https://acme-v02.api.letsencrypt.org
+  description: Production ACME endpoint
+- url: https://acme-staging-v02.api.letsencrypt.org
+  description: Staging ACME endpoint
+tags:
+- name: Directory
+  description: Discovery document listing ACME resources
+paths:
+  /directory:
+    get:
+      tags:
+      - Directory
+      summary: Get ACME directory
+      description: Returns URLs for all ACME resources and server metadata.
+      operationId: getDirectory
+      responses:
+        '200':
+          description: Directory object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Directory'
+components:
+  schemas:
+    Directory:
+      type: object
+      properties:
+        newNonce:
+          type: string
+          format: uri
+        newAccount:
+          type: string
+          format: uri
+        newOrder:
+          type: string
+          format: uri
+        newAuthz:
+          type: string
+          format: uri
+        revokeCert:
+          type: string
+          format: uri
+        keyChange:
+          type: string
+          format: uri
+        meta:
+          type: object
+          properties:
+            termsOfService:
+              type: string
+            website:
+              type: string
+            caaIdentities:
+              type: array
+              items:
+                type: string

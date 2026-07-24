@@ -1,0 +1,34 @@
+openapi: 3.0.3
+info:
+  title: Let's Encrypt ACME Account Nonce API
+  description: The ACME (Automatic Certificate Management Environment) protocol API used by Let's Encrypt to automate the issuance, renewal, and revocation of TLS certificates. Implements RFC 8555.
+  version: '1.0'
+  contact:
+    name: Let's Encrypt
+    url: https://letsencrypt.org/docs/
+  license:
+    name: Mozilla Public License 2.0
+    url: https://www.mozilla.org/en-US/MPL/2.0/
+servers:
+- url: https://acme-v02.api.letsencrypt.org
+  description: Production ACME endpoint
+- url: https://acme-staging-v02.api.letsencrypt.org
+  description: Staging ACME endpoint
+tags:
+- name: Nonce
+  description: Anti-replay nonces for JWS-signed requests
+paths:
+  /acme/new-nonce:
+    head:
+      tags:
+      - Nonce
+      summary: Get a new nonce
+      description: Returns a fresh nonce in the Replay-Nonce header for use in JWS requests.
+      operationId: newNonce
+      responses:
+        '200':
+          description: Nonce returned in Replay-Nonce header
+          headers:
+            Replay-Nonce:
+              schema:
+                type: string
