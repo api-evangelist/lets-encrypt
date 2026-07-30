@@ -5,9 +5,21 @@ description: >-
   affiliated with the Linux Foundation. It provides TLS certificates to secure the web, having issued billions of
   certificates to enable HTTPS for websites worldwide via the ACME protocol.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Freemium
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lets-encrypt.png
 tags:
   - Certificates
   - Linux Foundation
@@ -20,23 +32,90 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/lets-encrypt/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: lets-encrypt:lets-encrypt-acme-api
-    name: Let's Encrypt ACME API
-    description: >-
-      The ACME (Automatic Certificate Management Environment) protocol API, defined by RFC 8555, used by Let's Encrypt
-      to automate the issuance, renewal, and revocation of free TLS/SSL certificates that secure websites with HTTPS.
-    humanURL: https://letsencrypt.org/docs/
-    baseURL: https://acme-v02.api.letsencrypt.org
-    tags:
-      - ACME
-      - Certificates
-      - TLS
-      - PKI
-    properties:
-      - type: Documentation
-        url: https://letsencrypt.org/docs/
-      - type: OpenAPI
-        url: openapi/lets-encrypt-acme-openapi.yml
+- aid: lets-encrypt:lets-encrypt-account-api
+  name: Let's Encrypt Account API
+  description: ACME account creation and management
+  humanURL: https://letsencrypt.org/docs/
+  baseURL: https://acme-v02.api.letsencrypt.org
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/lets-encrypt-account-api-openapi.yml
+  - type: Documentation
+    url: https://letsencrypt.org/docs/
+- aid: lets-encrypt:lets-encrypt-authorization-api
+  name: Let's Encrypt Authorization API
+  description: Domain control authorizations
+  humanURL: https://letsencrypt.org/docs/
+  baseURL: https://acme-v02.api.letsencrypt.org
+  tags:
+  - Authorization
+  properties:
+  - type: OpenAPI
+    url: openapi/lets-encrypt-authorization-api-openapi.yml
+  - type: Documentation
+    url: https://letsencrypt.org/docs/
+- aid: lets-encrypt:lets-encrypt-certificate-api
+  name: Let's Encrypt Certificate API
+  description: Issued certificate retrieval and revocation
+  humanURL: https://letsencrypt.org/docs/
+  baseURL: https://acme-v02.api.letsencrypt.org
+  tags:
+  - Certificate
+  properties:
+  - type: OpenAPI
+    url: openapi/lets-encrypt-certificate-api-openapi.yml
+  - type: Documentation
+    url: https://letsencrypt.org/docs/
+- aid: lets-encrypt:lets-encrypt-challenge-api
+  name: Let's Encrypt Challenge API
+  description: Validation challenges (HTTP-01, DNS-01, TLS-ALPN-01)
+  humanURL: https://letsencrypt.org/docs/
+  baseURL: https://acme-v02.api.letsencrypt.org
+  tags:
+  - Challenge
+  properties:
+  - type: OpenAPI
+    url: openapi/lets-encrypt-challenge-api-openapi.yml
+  - type: Documentation
+    url: https://letsencrypt.org/docs/
+- aid: lets-encrypt:lets-encrypt-directory-api
+  name: Let's Encrypt Directory API
+  description: Discovery document listing ACME resources
+  humanURL: https://letsencrypt.org/docs/
+  baseURL: https://acme-v02.api.letsencrypt.org
+  tags:
+  - Directory
+  properties:
+  - type: OpenAPI
+    url: openapi/lets-encrypt-directory-api-openapi.yml
+  - type: Documentation
+    url: https://letsencrypt.org/docs/
+- aid: lets-encrypt:lets-encrypt-nonce-api
+  name: Let's Encrypt Nonce API
+  description: Anti-replay nonces for JWS-signed requests
+  humanURL: https://letsencrypt.org/docs/
+  baseURL: https://acme-v02.api.letsencrypt.org
+  tags:
+  - Nonce
+  properties:
+  - type: OpenAPI
+    url: openapi/lets-encrypt-nonce-api-openapi.yml
+  - type: Documentation
+    url: https://letsencrypt.org/docs/
+- aid: lets-encrypt:lets-encrypt-order-api
+  name: Let's Encrypt Order API
+  description: Certificate issuance orders
+  humanURL: https://letsencrypt.org/docs/
+  baseURL: https://acme-v02.api.letsencrypt.org
+  tags:
+  - Order
+  properties:
+  - type: OpenAPI
+    url: openapi/lets-encrypt-order-api-openapi.yml
+  - type: Documentation
+    url: https://letsencrypt.org/docs/
 common:
   - type: AgenticAccess
     url: agentic-access/lets-encrypt-agentic-access.yml
