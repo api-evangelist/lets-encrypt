@@ -1,0 +1,300 @@
+openapi: 3.0.3
+info:
+  title: Let's Encrypt ACME API
+  description: >-
+    The ACME (Automatic Certificate Management Environment) protocol API used by
+    Let's Encrypt to automate the issuance, renewal, and revocation of TLS
+    certificates. Implements RFC 8555.
+  version: '1.0'
+  contact:
+    name: Let's Encrypt
+    url: https://letsencrypt.org/docs/
+  license:
+    name: Mozilla Public License 2.0
+    url: https://www.mozilla.org/en-US/MPL/2.0/
+servers:
+  - url: https://acme-v02.api.letsencrypt.org
+    description: Production ACME endpoint
+  - url: https://acme-staging-v02.api.letsencrypt.org
+    description: Staging ACME endpoint
+tags:
+  - name: Directory
+    description: Discovery document listing ACME resources
+  - name: Nonce
+    description: Anti-replay nonces for JWS-signed requests
+  - name: Account
+    description: ACME account creation and management
+  - name: Order
+    description: Certificate issuance orders
+  - name: Authorization
+    description: Domain control authorizations
+  - name: Challenge
+    description: Validation challenges (HTTP-01, DNS-01, TLS-ALPN-01)
+  - name: Certificate
+    description: Issued certificate retrieval and revocation
+paths:
+  /directory:
+    get:
+      tags:
+        - Directory
+      summary: Get ACME directory
+      description: Returns URLs for all ACME resources and server metadata.
+      operationId: getDirectory
+      responses:
+        '200':
+          description: Directory object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Directory'
+  /acme/new-nonce:
+    head:
+      tags:
+        - Nonce
+      summary: Get a new nonce
+      description: Returns a fresh nonce in the Replay-Nonce header for use in JWS requests.
+      operationId: newNonce
+      responses:
+        '200':
+          description: Nonce returned in Replay-Nonce header
+          headers:
+            Replay-Nonce:
+              schema:
+                type: string
+  /acme/new-acct:
+    post:
+      tags:
+        - Account
+      summary: Create or look up an account
+      description: Creates a new ACME account or returns the URL of an existing account for the given key.
+      operationId: newAccount
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '201':
+          description: Account created
+        '200':
+          description: Existing account returned
+  /acme/acct/{accountId}:
+    post:
+      tags:
+        - Account
+      summary: Update or deactivate account
+      operationId: updateAccount
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: Account updated
+  /acme/new-order:
+    post:
+      tags:
+        - Order
+      summary: Submit a new certificate order
+      operationId: newOrder
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '201':
+          description: Order created
+  /acme/order/{orderId}:
+    post:
+      tags:
+        - Order
+      summary: Get order status
+      operationId: getOrder
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: Order status
+  /acme/finalize/{orderId}:
+    post:
+      tags:
+        - Order
+      summary: Finalize an order with a CSR
+      operationId: finalizeOrder
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: Order finalized
+  /acme/authz/{authzId}:
+    post:
+      tags:
+        - Authorization
+      summary: Get authorization status
+      operationId: getAuthorization
+      parameters:
+        - name: authzId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: Authorization status
+  /acme/chall/{challengeId}:
+    post:
+      tags:
+        - Challenge
+      summary: Respond to a challenge
+      operationId: respondChallenge
+      parameters:
+        - name: challengeId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: Challenge response accepted
+  /acme/cert/{certId}:
+    post:
+      tags:
+        - Certificate
+      summary: Download issued certificate
+      operationId: getCertificate
+      parameters:
+        - name: certId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: PEM-encoded certificate chain
+          content:
+            application/pem-certificate-chain:
+              schema:
+                type: string
+  /acme/revoke-cert:
+    post:
+      tags:
+        - Certificate
+      summary: Revoke a certificate
+      operationId: revokeCertificate
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: Certificate revoked
+  /acme/key-change:
+    post:
+      tags:
+        - Account
+      summary: Rotate account key
+      operationId: keyChange
+      requestBody:
+        required: true
+        content:
+          application/jose+json:
+            schema:
+              $ref: '#/components/schemas/JWS'
+      responses:
+        '200':
+          description: Account key rotated
+components:
+  schemas:
+    Directory:
+      type: object
+      properties:
+        newNonce:
+          type: string
+          format: uri
+        newAccount:
+          type: string
+          format: uri
+        newOrder:
+          type: string
+          format: uri
+        newAuthz:
+          type: string
+          format: uri
+        revokeCert:
+          type: string
+          format: uri
+        keyChange:
+          type: string
+          format: uri
+        meta:
+          type: object
+          properties:
+            termsOfService:
+              type: string
+            website:
+              type: string
+            caaIdentities:
+              type: array
+              items:
+                type: string
+    JWS:
+      type: object
+      description: Flattened JSON Web Signature object per RFC 7515
+      properties:
+        protected:
+          type: string
+        payload:
+          type: string
+        signature:
+          type: string
