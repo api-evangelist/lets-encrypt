@@ -1,0 +1,130 @@
+{
+  "item": [
+    {
+      "id": "363dfb7f-cdd0-4ea9-8f15-33bf912fa03e",
+      "name": "Challenge",
+      "description": {
+        "content": "Validation challenges (HTTP-01, DNS-01, TLS-ALPN-01)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6f8424c9-c979-42f6-93e4-2449e4f0a533",
+          "name": "Respond to a challenge",
+          "request": {
+            "name": "Respond to a challenge",
+            "description": {},
+            "url": {
+              "path": [
+                "acme",
+                "chall",
+                ":challengeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "challengeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/jose+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"protected\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "411d92cc-92ae-448a-9779-195331cceb15",
+              "name": "Challenge response accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acme",
+                    "chall",
+                    ":challengeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "challengeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"protected\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://acme-v02.api.letsencrypt.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5716a765-4d0b-4cb3-8731-931e83e3bd48",
+    "name": "Let's Encrypt ACME Account Challenge API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ACME (Automatic Certificate Management Environment) protocol API used by Let's Encrypt to automate the issuance, renewal, and revocation of TLS certificates. Implements RFC 8555.\n\nContact Support:\n Name: Let's Encrypt",
+      "type": "text/plain"
+    }
+  }
+}

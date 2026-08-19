@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "6db47bdc-c8b0-4fa8-ba9c-bbd2df8762b7",
+      "name": "Directory",
+      "description": {
+        "content": "Discovery document listing ACME resources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "47e7fcf5-36fe-4d25-91b3-7f59fca3ac1f",
+          "name": "Get ACME directory",
+          "request": {
+            "name": "Get ACME directory",
+            "description": {
+              "content": "Returns URLs for all ACME resources and server metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "directory"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0a39206-6a4b-4d9b-9ce1-1f3d3c2bba99",
+              "name": "Directory object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "directory"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"newNonce\": \"https://QxtqDAJwfHLMjRFJtJgLXUVUVmABp.hlMW8Dg67TYPDx+d7mOvk614aegOzxUrWCf.XvP9uBXciwewN,dJMg0jIIxywtJ5QH\",\n  \"newAccount\": \"https://qxBDErYvtFGdIuHjcWlcbDeeLGKaS.nfvoUZgBIkaZfApqyBEUPFk939+CeHNv0ucdGNoCQK16g6ipNwR31O9DWh,\",\n  \"newOrder\": \"http://rpH.siaHFTuYnrHv9ChOmGFvjlTRSPr\",\n  \"newAuthz\": \"http://ZHowVxvVvcqRMxpFmAApKoqdha.lfyZcKr5Ub2\",\n  \"revokeCert\": \"https://iZZeXXaspMkruTwbeKiwvGCMnWXqXuWjU.werlQC5J8Fjjnnp3VnnzS2UInrWAre\",\n  \"keyChange\": \"https://v.goU4wVM7B5fKgu1RM,vSPdd2s\",\n  \"meta\": {\n    \"termsOfService\": \"string\",\n    \"website\": \"string\",\n    \"caaIdentities\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://acme-v02.api.letsencrypt.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "64a4c07a-69cd-46b3-9674-e50d01c379a5",
+    "name": "Let's Encrypt ACME Account Directory API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ACME (Automatic Certificate Management Environment) protocol API used by Let's Encrypt to automate the issuance, renewal, and revocation of TLS certificates. Implements RFC 8555.\n\nContact Support:\n Name: Let's Encrypt",
+      "type": "text/plain"
+    }
+  }
+}

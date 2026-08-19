@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Let's Encrypt ACME Account Nonce API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Nonce",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a new nonce",
+            "type": "http"
+          },
+          "http": {
+            "method": "HEAD",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/new-nonce"
+          },
+          "docs": "Returns a fresh nonce in the Replay-Nonce header for use in JWS requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

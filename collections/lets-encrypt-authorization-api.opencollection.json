@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Let's Encrypt ACME Account Authorization API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authorization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get authorization status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/authz/:authzId",
+            "params": [
+              {
+                "name": "authzId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get authorization status"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,98 @@
+{
+  "item": [
+    {
+      "id": "19cad4d5-c15d-454c-ab65-597e901f503e",
+      "name": "Nonce",
+      "description": {
+        "content": "Anti-replay nonces for JWS-signed requests",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "869f829e-bb56-46d0-bde3-c42b7083f9b3",
+          "name": "Get a new nonce",
+          "request": {
+            "name": "Get a new nonce",
+            "description": {
+              "content": "Returns a fresh nonce in the Replay-Nonce header for use in JWS requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "acme",
+                "new-nonce"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "HEAD",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0788539f-5172-4fc9-aba0-88e5ff6c9224",
+              "name": "Nonce returned in Replay-Nonce header",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acme",
+                    "new-nonce"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "HEAD",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "Replay-Nonce",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://acme-v02.api.letsencrypt.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "677e3794-bf6a-4e08-adc5-2698b2d2c730",
+    "name": "Let's Encrypt ACME Account Nonce API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ACME (Automatic Certificate Management Environment) protocol API used by Let's Encrypt to automate the issuance, renewal, and revocation of TLS certificates. Implements RFC 8555.\n\nContact Support:\n Name: Let's Encrypt",
+      "type": "text/plain"
+    }
+  }
+}

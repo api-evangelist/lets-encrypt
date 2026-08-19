@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Let's Encrypt ACME Account Order API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Order",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submit a new certificate order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/new-order",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a new certificate order"
+        },
+        {
+          "info": {
+            "name": "Get order status",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/order/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get order status"
+        },
+        {
+          "info": {
+            "name": "Finalize an order with a CSR",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://acme-v02.api.letsencrypt.org/acme/finalize/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Finalize an order with a CSR"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

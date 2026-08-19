@@ -1,0 +1,331 @@
+{
+  "item": [
+    {
+      "id": "16164fcf-ee8f-4bb0-a576-7f9082e6dedf",
+      "name": "Account",
+      "description": {
+        "content": "ACME account creation and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9abe7a21-3f3d-4390-b241-8fe66db064a0",
+          "name": "Create or look up an account",
+          "request": {
+            "name": "Create or look up an account",
+            "description": {
+              "content": "Creates a new ACME account or returns the URL of an existing account for the given key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "acme",
+                "new-acct"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/jose+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"protected\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "68a3eb2d-c019-43ce-a268-d1a90bdf7781",
+              "name": "Existing account returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acme",
+                    "new-acct"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"protected\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6be15591-fb35-44c7-8356-3306917d3f57",
+              "name": "Account created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acme",
+                    "new-acct"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"protected\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3956793-4594-4816-8427-9d124ddc6590",
+          "name": "Update or deactivate account",
+          "request": {
+            "name": "Update or deactivate account",
+            "description": {},
+            "url": {
+              "path": [
+                "acme",
+                "acct",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/jose+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"protected\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1176b44a-13d2-440c-bafd-baf179e31239",
+              "name": "Account updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acme",
+                    "acct",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"protected\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "661b45a7-81e7-4bad-8fe0-89000b5802b7",
+          "name": "Rotate account key",
+          "request": {
+            "name": "Rotate account key",
+            "description": {},
+            "url": {
+              "path": [
+                "acme",
+                "key-change"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/jose+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"protected\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f9e26c85-63eb-4e46-8215-682abd93d285",
+              "name": "Account key rotated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acme",
+                    "key-change"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"protected\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://acme-v02.api.letsencrypt.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "04e1783b-79a6-47d1-abb3-e9c15d4b2369",
+    "name": "Let's Encrypt ACME Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ACME (Automatic Certificate Management Environment) protocol API used by Let's Encrypt to automate the issuance, renewal, and revocation of TLS certificates. Implements RFC 8555.\n\nContact Support:\n Name: Let's Encrypt",
+      "type": "text/plain"
+    }
+  }
+}

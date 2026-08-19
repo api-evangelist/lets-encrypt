@@ -1,0 +1,130 @@
+{
+  "item": [
+    {
+      "id": "e66e2926-dc7b-40d4-bef8-e886894155a0",
+      "name": "Authorization",
+      "description": {
+        "content": "Domain control authorizations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f0531a21-e865-42f6-92f0-f6eabdee8b5a",
+          "name": "Get authorization status",
+          "request": {
+            "name": "Get authorization status",
+            "description": {},
+            "url": {
+              "path": [
+                "acme",
+                "authz",
+                ":authzId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "authzId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/jose+json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"protected\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e0470725-79f2-45b2-8b7a-eef2e7c07953",
+              "name": "Authorization status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "acme",
+                    "authz",
+                    ":authzId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "authzId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"protected\": \"<string>\",\n  \"payload\": \"<string>\",\n  \"signature\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://acme-v02.api.letsencrypt.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "50aa3f8d-ea1a-405c-bc6a-212542d56cb8",
+    "name": "Let's Encrypt ACME Account Authorization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The ACME (Automatic Certificate Management Environment) protocol API used by Let's Encrypt to automate the issuance, renewal, and revocation of TLS certificates. Implements RFC 8555.\n\nContact Support:\n Name: Let's Encrypt",
+      "type": "text/plain"
+    }
+  }
+}
