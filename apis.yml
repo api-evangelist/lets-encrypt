@@ -5,6 +5,17 @@ description: >-
   affiliated with the Linux Foundation. It provides TLS certificates to secure the web, having issued billions of
   certificates to enable HTTPS for websites worldwide via the ACME protocol.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
