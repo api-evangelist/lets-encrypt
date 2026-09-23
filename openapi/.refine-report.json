@@ -1,13 +1,7 @@
 {
   "provider": "lets-encrypt",
   "sources": [
-    "lets-encrypt-account-api-openapi.yml",
-    "lets-encrypt-authorization-api-openapi.yml",
-    "lets-encrypt-certificate-api-openapi.yml",
-    "lets-encrypt-challenge-api-openapi.yml",
-    "lets-encrypt-directory-api-openapi.yml",
-    "lets-encrypt-nonce-api-openapi.yml",
-    "lets-encrypt-order-api-openapi.yml"
+    "_original/lets-encrypt-acme-openapi.yml"
   ],
   "outputs": [
     "lets-encrypt-account-api-openapi.yml",
@@ -21,6 +15,18 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "lets-encrypt-acme-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "lets-encrypt-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lets-encrypt-authorization-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lets-encrypt-certificate-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lets-encrypt-challenge-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lets-encrypt-directory-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lets-encrypt-nonce-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lets-encrypt-order-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
