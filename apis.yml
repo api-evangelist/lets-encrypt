@@ -128,6 +128,9 @@ apis:
   - type: Documentation
     url: https://letsencrypt.org/docs/
 common:
+  - type: CapabilityMap
+    url: capabilities/lets-encrypt-capability-edges.yml
+    name: Let's Encrypt Business Capability Map
   - type: Website
     url: https://www.letsencrypt.org/
   - type: AgenticAccess
