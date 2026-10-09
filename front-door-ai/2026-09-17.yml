@@ -7,14 +7,17 @@ front_door_ai:
   probed_at: '2026-09-17'
   host: www.letsencrypt.org
   final_host: letsencrypt.org
-  ownership: inherited
+  ownership: own
   owner: lets-encrypt
   shares_host_with: null
-  inherited_from: letsencrypt.org
+  inherited_from: null
+  alias_of: letsencrypt.org
   verdict: silent
-  score: null
+  score: 0
+  band: 1
+  band_label: silent
   host_score: 0
-  density: null
+  density: 0.0
   words: 678
   tiers:
     agentic: 0
